@@ -6,7 +6,7 @@
                 <h4 class="my-2 mx-2 text-light fw-bold custom-fontsize-title">Buku Resep 79 v0.1</h4>
             </a>
             <div class="d-flex flex-row justify-content-center align-item-center liv-nav">
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                     <i class="ri-menu-line"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -42,7 +42,7 @@
                 <i class="ri-star-line">Resep Favorite</i>
             </a>
             {{-- Logout --}}
-            <a wire:click="logout" class="my-2 mx-3 link-underline link-underline-opacity-0 mx-4 fs-6 fw-bold">
+            <a wire:click="logout" class="my-2 mx-3 link-underline link-underline-opacity-0 mx-4 fs-6 fw-bold link-light">
                 <i class="ri-logout-box-line">Signout</i>
             </a>
         </div>

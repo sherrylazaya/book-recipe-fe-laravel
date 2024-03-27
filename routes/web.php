@@ -1,7 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\Login;
+use App\Livewire\Page\MyRecipe;
+use App\Livewire\Page\Dashboard;
+use App\Livewire\Page\Favorites;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +22,6 @@ Route::get('/', function () {
 });
 
 Route::get('/login', Login::class)->name('login');
+Route::get('/dashboard', Dashboard::class)->name('dashboard');
+Route::get('/my-recipes', MyRecipe::class)->name('my-recipes');
+Route::get('/favorites', Favorites::class)->name('favorites');

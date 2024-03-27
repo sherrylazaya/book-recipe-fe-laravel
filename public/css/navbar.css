@@ -1,0 +1,40 @@
+.bg-recipe-primary {
+    background-color: #F49881;
+    padding: 0 12rem 0 12rem;
+    height: 4rem;
+    width: 100%;
+    font-weight: 800;
+}
+
+.container-fluid {
+    margin: 0 10% 0 10%;
+    cursor: pointer;
+}
+
+.liv-nav .link-underline {
+    color: #01BFBF;
+    cursor: pointer;
+}
+
+.navbar-toggler {
+    border: none;
+    color: #fff;
+    margin: 0%;
+}
+
+.offcanvas {
+    width: 100%;
+}
+
+.link-recipe-primary {
+    color: #01BFBF;
+}
+
+@media (max-width: 768px) {
+    .bg-recipe-primary-offcanvas {
+        background-color: #F49881;
+        padding: 1rem;
+        width: 50%;
+        font-weight: 800;
+    }
+}

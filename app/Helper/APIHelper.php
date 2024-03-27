@@ -22,5 +22,19 @@ class APIHelper{
             'tog-favorite' => $this->baseurl.'/book-recipe/book-recipes/{id}/favorites',
         ];
     }
+
+    public function login($data){
+        try {
+            if(!is_array($data)){
+                throw new InvalidArgumentException('$data must be an array');
+            }
+            $endpoint = $this->url('login');
+            $response = Http::post($endpoint ,$data);
+            return $response->json();
+        } catch (\Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
 }
 ?>

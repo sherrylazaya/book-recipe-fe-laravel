@@ -6,3 +6,11 @@
     padding-bottom: 2.5rem;
     width: 100%;
 }
+
+/* btn primary */
+.btn-primary {
+    width: 100%;
+    background-color: #01bfbf;
+    border-color: #01bfbf;
+    font-size: 14px;
+}

@@ -1,6 +1,11 @@
 <?php
 namespace App\Helper;
 
+use Exception;
+use InvalidArgumentException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
+
 class APIHelper{
     private $baseurl;
     private $url;
@@ -28,7 +33,7 @@ class APIHelper{
             if(!is_array($data)){
                 throw new InvalidArgumentException('$data must be an array');
             }
-            $endpoint = $this->url('login');
+            $endpoint = $this->url['login'];
             $response = Http::post($endpoint ,$data);
             return $response->json();
         } catch (\Throwable $error) {

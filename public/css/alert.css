@@ -1,0 +1,19 @@
+.auth-alert {
+    width: fit-content;
+    position: fixed;
+    top: 10%;
+    z-index: 9999;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.text-recipe-success{
+    color: #00E696;
+}
+
+.text-recipe-warning{
+    color: #FBBC04;
+}
+
+.bg-recipe-danger{
+    background-color: #ff0000;
+}

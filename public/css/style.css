@@ -14,3 +14,16 @@
     border-color: #01bfbf;
     font-size: 14px;
 }
+
+.btn-add {
+    background: #01BFBF;
+    width: 12rem;
+    font-size: 14px;
+}
+
+@media (max-width: 576px) {
+    .btn-add {
+        width: 10rem;
+        margin: 0;
+    }
+}

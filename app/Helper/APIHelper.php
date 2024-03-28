@@ -2,6 +2,7 @@
 namespace App\Helper;
 
 use Exception;
+use Throwable;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
@@ -139,9 +140,31 @@ class APIHelper{
             }
 
             return $fakeApiResponse;
-        } catch (\Throwable $error) {
+        } catch (Throwable $error) {
             return ["error" => $error->getMessage()];
         }
     }
+
+    public function getLevels(){
+        try {
+            $endpoint = $this->url['levels'];
+            $response = Http::get($endpoint);
+
+            return $response->json();
+        } catch (Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
+    public function getCategories(){
+     try {
+            $endpoint = $this->url['categories'];
+            $response = Http::get($endpoint);
+
+            return $response->json();
+        } catch (Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }}
 }
 ?>

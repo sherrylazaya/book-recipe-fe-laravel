@@ -1,0 +1,45 @@
+.custom-search {
+    max-width: 400px;
+    min-width: 240px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-light {
+    border-color: #787885;
+    color: #787885;
+    background: white;
+    font-size: 14px;
+    width: 8rem;
+}
+
+.btn-light:focus, 
+.btn-light:active {
+    border-color: #787885 ;
+    outline: none;
+}
+
+.filter-container {
+    width: auto;
+}
+
+.filter-btn {
+    width: auto;
+}
+
+@media (max-width: 576px){
+    .custom-search {
+        max-width: 90%;
+        margin: 0 5%;
+        align-content: center;
+    }
+
+    .filter-container {
+        width: 100%;
+    }
+
+    .filter-btn {
+        width: 50%;
+    }
+}

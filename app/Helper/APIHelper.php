@@ -2,6 +2,7 @@
 namespace App\Helper;
 
 use Exception;
+use Throwable;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
@@ -60,9 +61,8 @@ class APIHelper{
     public function register($data){
         try{
             if(!is_array($data)){
-                throw new InvalidArgumentException('$data mus be an array');
+                throw new InvalidArgumentException('$data must be an array');
             }
-
             $endpoint = $this->url['register'];
             $response =  Http::post($endpoint ,$data);
             return $response->json();
@@ -141,7 +141,7 @@ class APIHelper{
             }
 
             return $fakeApiResponse;
-        } catch (\Throwable $error) {
+        } catch (Throwable $error) {
             return ["error" => $error->getMessage()];
         }
     }
@@ -153,10 +153,32 @@ class APIHelper{
                 'Authorization' => 'Bearer ' . session('token')
             ])->get($endpoint);
             return $response->json();
-        } catch (\Throwable $error) {
+        } catch (Throwable $error) {
             Log::error($error->getMessage());
             throw $error;
         }
     }
+    
+    public function getLevels(){
+        try {
+            $endpoint = $this->url['levels'];
+            $response = Http::get($endpoint);
+
+            return $response->json();
+        } catch (Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
+    public function getCategories(){
+     try {
+            $endpoint = $this->url['categories'];
+            $response = Http::get($endpoint);
+
+            return $response->json();
+        } catch (Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }}
 }
 ?>

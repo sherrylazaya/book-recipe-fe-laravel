@@ -1,0 +1,68 @@
+.parent-card {
+    width: 75%;
+}
+
+.card {
+    background-color: white;
+    width: 100%;
+    max-width: 345px;
+    height: fit-content;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    margin: 10px;
+}
+
+.content-recipe {
+    position: relative;
+    display: inline-block;
+}
+
+.card .btn-group {
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+    cursor: pointer;
+    margin: 8px;
+}
+
+.card .dropdown-menu {
+    min-width: 100%;
+    padding: 8px;
+}
+
+.image-container {
+    width: 100%;
+    min-width: 150px;
+    height: 9rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.details {
+    padding: 12px;
+    padding-bottom: 0px;
+    color: #01BFBF;
+    font-size: 14px;
+
+    .p-recipe {
+        color: #000;
+    }
+}
+
+@media (min-width: 576px){
+    .card {
+        width: 100%;
+        max-width: none;
+    }
+}
+

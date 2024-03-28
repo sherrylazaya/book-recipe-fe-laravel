@@ -65,7 +65,7 @@ class Register extends Component
             'fullname' => $this->fullName,
             'password' => $this->password,
             'retypePassword' => $this->retypePassword,
-                'created_by' => $this->username,
+            'created_by' => $this->username,
             'role' => 'User',
             'is_deleted' => false,
             'modified_time' => now()

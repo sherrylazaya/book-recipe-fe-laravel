@@ -12,19 +12,20 @@ class Navigation extends Component
     public function logout(){
         session()->forget('token');
         session()->forget('userId');
+        session()->forget('navPage');
         return redirect()->to(route('login'));
     }
 
-    // public function mount(){
-    //     $route = Route::currentRouteName();
-    //     $previousRoute = session()->get('navPage') ?? 'dashboard';
-    //     if(in_array($route, ['dashbaord', 'my-recipes', 'favorites'])){
-    //         $this->isCurrent = $previousRoute;
-    //         session()->put('navPage', $route);
-    //     }else{
-    //         $this->isCurrent = $previousRoute;
-    //     }
-    // }
+    public function mount(){
+        $route = Route::currentRouteName();
+        $previousRoute = session()->get('navPage') ?? 'dashboard';
+        if(in_array($route, ['dashbaord', 'my-recipes', 'favorites'])){
+            $this->isCurrent = $previousRoute;
+            session()->put('navPage', $route);
+        }else{
+            $this->isCurrent = $previousRoute;
+        }
+    }
     
     public function render()
     {

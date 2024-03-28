@@ -1,4 +1,14 @@
 <div class="col-12">
+    @if(session('loginSuccess'))
+        <livewire:reusable.alert-auth-success :message="session('loginSuccess')"/>
+    @endif
+
+    @if ($flashMessage)
+        <livewire:reusable.alert-success :message="$flashMessage" wire:key="success-{{$alertId}}"/>
+    @endif
+
+    <livewire:reusable.alert-info name="favorite" :alertId="$alertId" wire:key="alert_{{$alertId}}" />
+
     {{-- desktop --}}
     <div class="d-none d-sm-flex flex-column align-items-center mt-5">
         <div class="d-flex justify-content-center col-12">
@@ -30,12 +40,18 @@
     <div class="d-flex justify-content-center w-100">
         <div class="row parent-card justify-content-start mt-3">
             @foreach ($recipes['data'] as $data)
-                <livewire:reusable.card :data="$data" :key="$data['recipeId']">
+                <livewire:reusable.card :data="$data" :key="$indexChanges">
             @endforeach
+
+            <div class="mx-md-2">
+                <div class="d-md-flex align-items-center justify-content-between mt-4 mx-auto">
+                    <livewire:reusable.index-limitter :key="$indexChanges">
+                    <livewire:reusable.pagination :initialData="$recipes" :currentPage="$currentPage" :key="$indexChanges">
+                </div>
+            </div>
         </div>
     </div>
     @else
-    {{-- <livewire:components.no-data :message="$recipes['message']"> --}}
-        <h1>No Data</h1>
+    <livewire:components.no-data :message="$recipes['message']">
         @endif
 </div>

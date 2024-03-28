@@ -16,7 +16,7 @@
     </div>
     @script
     <script>
-        $('#succesModal').modal('show');
+        $('#successModal').modal('show');
         $('.message').html('{{$message}}');
     </script>
     @endscript

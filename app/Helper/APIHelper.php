@@ -13,7 +13,7 @@ class APIHelper{
     public function __construct(){
         $this->baseUrl = env('API_URL');
         $this->url = [
-            'login' => $this->baseUrl.'/user-management/users/sign-in',
+            'login' => $this->baseUrl.'/user-management/users/signin',
             'register' => $this->baseUrl.'/user-management/users/sign-up',
             'levels' => $this->baseUrl.'/book-recipe-masters/level-option-lists',
             'categories' => $this->baseUrl.'/book-recipe-masters/category-option-lists',
@@ -35,6 +35,7 @@ class APIHelper{
             }
             $endpoint = $this->url['login'];
             $response = Http::post($endpoint ,$data);
+            Log::info($response);
             return $response->json();
         } catch (\Throwable $error) {
             Log::error($error->getMessage());
@@ -48,6 +49,7 @@ class APIHelper{
             $response = Http::put($endpoint ,[
                 'userId' => session()->get('userId')
             ]);
+            Log::info($response);
             return $response->json();
         } catch (\Throwable $error){
             Log::error($error->getMessage());
@@ -141,6 +143,19 @@ class APIHelper{
             return $fakeApiResponse;
         } catch (\Throwable $error) {
             return ["error" => $error->getMessage()];
+        }
+    }
+
+    function getDetailRecipe($id){
+        try {
+            $endpoint = str_replace('{id}', $id, $this->url['detail-recipe']);
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . session('token')
+            ])->get($endpoint);
+            return $response->json();
+        } catch (\Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
         }
     }
 }

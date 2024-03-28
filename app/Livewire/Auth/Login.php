@@ -24,7 +24,7 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.auth.login'); 
+        return view('livewire.auth.login');
     }
 
     public function rules(){
@@ -66,7 +66,7 @@ class Login extends Component
         session()->put('token', $response['data']['token']);
         session()->put('userId', $response['data']['id']);
 
-        redirect()->route('dasboard')->with('loginSuccess', 'Login Berhasil');
+        redirect()->route('dashboard')->with('loginSuccess', 'Login Berhasil');
     }
 
     public function updated($propertyName){

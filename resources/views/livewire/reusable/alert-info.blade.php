@@ -19,13 +19,13 @@
     @script
     <script>
         $(document).ready(function(){
-            Livewire.on('infoAlert-{{$name}}--${{$alertId}}', (event)=> {
+            Livewire.on('infoAlert-{{$name}}-{{$alertId}}', (event)=> {
             const message = event.message;
             $('#infoModal{{$name}}').modal('show');
             $('.message-modal-{{$name}}').text(message);
-            $('.choices').clik(function(){
-                const choices = $(this).data('choises');
-                $wire.dispatch('choises-{{$name}}', {choices:choices});
+            $('.choices').click(function(){
+                const choices = $(this).data('choices');
+                $wire.dispatch('choices-{{$name}}', {choices:choices});
             })
         });
     })

@@ -8,7 +8,7 @@
     </div>
     @script
     <script>
-        $('.#errorModal').modal('show');
+        $('#errorModal').modal('show');
     </script>
     @endscript
 </div>

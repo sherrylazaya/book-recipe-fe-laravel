@@ -52,7 +52,9 @@ class Dashboard extends Component
 
     #[On('searchPerformed')]
     public function search($search){
+        Log::info($search);
         $this->search = $search;
+        Log::info($this->search);
         $this->recipes = $this->fetchRecipes();
         $this->indexChanges++;
     }
@@ -79,6 +81,7 @@ class Dashboard extends Component
         Log::info('changed'.$currentPage);
         $this->currentPage = $currentPage;
         $this->recipes = $this->fetchRecipes();
+        $this->indexChanges++;
     }
 
     #[On('choices-favorite')]

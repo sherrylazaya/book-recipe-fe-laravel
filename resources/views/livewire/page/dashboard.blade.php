@@ -30,19 +30,18 @@
     <div class="d-flex justify-content-center w-100">
         <div class="row parent-card justify-content-start mt-3">
             @foreach ($recipes['data'] as $data)
-                <livewire:reusable.card :data="$data" :key="$data['recipeId']">
+                <livewire:reusable.card :data="$data" :key="$indexChanges">
             @endforeach
 
             <div class="mx-md-2">
                 <div class="d-md-flex align-items-center justify-content-between mt-4 mx-auto">
-                    <livewire:reusable.index-limitter>
-                    <livewire:reusable.pagination :initialData="$recipes" :currentPage="$currentPage" :key="$currentPage">
+                    <livewire:reusable.index-limitter :key="$indexChanges">
+                    <livewire:reusable.pagination :initialData="$recipes" :currentPage="$currentPage" :key="$indexChanges">
                 </div>
             </div>
         </div>
     </div>
     @else
-    {{-- <livewire:components.no-data :message="$recipes['message']"> --}}
-        <h1>No Data</h1>
+    <livewire:components.no-data :message="$recipes['message']">
         @endif
 </div>

@@ -17,6 +17,7 @@ class IndexLimitter extends Component
     public function setEntries($entries){
         $this->selectedEnteries = $entries;
         Log::info('setEntries');
+        Log::info($entries);
         session()->put('entries', $entries);
         $this->dispatch('updateEntries');
     }

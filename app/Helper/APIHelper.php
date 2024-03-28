@@ -87,6 +87,7 @@ class APIHelper{
                 'pageNumber' => $pageNumber
             ]);
             $response = Http::get($endp);
+            Log::info($response);
             return $response->json();
         } catch (Throwable $error) {
             Log::error($error->getMessage());

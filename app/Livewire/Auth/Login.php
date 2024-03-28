@@ -54,7 +54,7 @@ class Login extends Component
         ];
 
         $response = $helper->login($data);
-        Log::info($response);
+
         if($response['statusCode'] == 401){
             $this->dispatch('alertAuthError', message:"Username atau kata sandi salah");
             return;

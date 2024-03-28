@@ -40,7 +40,7 @@
     <div class="d-flex justify-content-center w-100">
         <div class="row parent-card justify-content-start mt-3">
             @foreach ($recipes['data'] as $data)
-                <livewire:reusable.card :data="$data" :key="$indexChanges">
+                <livewire:reusable.card :data="$data" :key="$data['recipeId']">
             @endforeach
 
             <div class="mx-md-2">

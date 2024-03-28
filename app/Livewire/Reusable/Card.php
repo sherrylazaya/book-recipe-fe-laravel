@@ -4,6 +4,8 @@ namespace App\Livewire\Reusable;
 
 use Livewire\Component;
 use App\Helper\APIHelper;
+use Livewire\Attributes\On;
+use Illuminate\Support\Facades\Log;
 
 class Card extends Component
 {
@@ -34,6 +36,8 @@ class Card extends Component
     }
 
     public function showModal(){
+        Log::info('showModalDispatch');
+        Log::info($this->data);
         $message = $this->data['isFavorite']
         ? 'Apa anda yakin ingin menghapus Resep ini dari Favorit anda?'
         : 'Apa anda ingin menambahkan Resep ini ke Favorite anda?';

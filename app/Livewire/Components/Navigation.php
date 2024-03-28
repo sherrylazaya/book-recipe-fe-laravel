@@ -12,6 +12,7 @@ class Navigation extends Component
     public function logout(){
         session()->forget('token');
         session()->forget('userId');
+        session()->forget('navPage');
         return redirect()->to(route('login'));
     }
 

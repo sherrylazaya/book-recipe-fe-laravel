@@ -1,4 +1,14 @@
 <div class="col-12">
+    @if(session('loginSuccess'))
+        <livewire:reusable.alert-auth-success :message="session('loginSuccess')"/>
+    @endif
+
+    @if ($flashMessage)
+        <livewire:reusable.alert-success :message="$flashMessage" wire:key="success-{{$alertId}}"/>
+    @endif
+
+    <livewire:reusable.alert-info name="favorite" :alertId="$alertId" wire:key="alert_{{$alertId}}" />
+
     {{-- desktop --}}
     <div class="d-none d-sm-flex flex-column align-items-center mt-5">
         <div class="d-flex justify-content-center col-12">

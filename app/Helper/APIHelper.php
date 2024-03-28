@@ -107,7 +107,7 @@ class APIHelper{
             throw $error;
         }
     }
-    
+
     public function getLevels(){
         try {
             $endpoint = $this->url['levels'];
@@ -119,6 +119,7 @@ class APIHelper{
             throw $error;
         }
     }
+
     public function getCategories(){
      try {
             $endpoint = $this->url['categories'];
@@ -128,6 +129,6 @@ class APIHelper{
         } catch (Throwable $error) {
             Log::error($error->getMessage());
             throw $error;
-        }}
+    }}
 }
 ?>

@@ -4,6 +4,8 @@ namespace App\Livewire\Page;
 
 use Livewire\Component;
 use App\Helper\APIHelper;
+use Livewire\Attributes\On;
+use Illuminate\Support\Facades\Log;
 
 class Dashboard extends Component
 {
@@ -67,12 +69,14 @@ class Dashboard extends Component
 
     #[On('updateEntries')]
     public function entries(){
+        Log::info('halo');
         $this->recipes = $this->fetchRecipes();
         $this->indexChanges++;
     }
 
     #[On('paginationChanged')]
     public function paginationChanged($currentPage){
+        Log::info('changed'.$currentPage);
         $this->currentPage = $currentPage;
         $this->recipes = $this->fetchRecipes();
     }

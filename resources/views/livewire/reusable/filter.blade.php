@@ -47,7 +47,7 @@
                     </select>
                 </div>
                 @endif
-                <div class="col-mb-3 d-none d-md-block">
+                <div class="col mb-3 d-none d-md-block">
                     <p>Sortir</p>
                     <select class="form-select custom-fontsize-content2" aria-label="Third select example" wire:model='sortBy'>
                         <option selected value="">All</option>

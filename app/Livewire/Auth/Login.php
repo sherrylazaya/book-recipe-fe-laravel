@@ -54,7 +54,7 @@ class Login extends Component
         ];
 
         $response = $helper->login($data);
-
+        Log::info($response);
         if($response['statusCode'] == 401){
             $this->dispatch('alertAuthError', message:"Username atau kata sandi salah");
             return;
@@ -66,7 +66,7 @@ class Login extends Component
         session()->put('token', $response['data']['token']);
         session()->put('userId', $response['data']['id']);
 
-        redirect()->route('dasboard')->with('loginSuccess', 'Login Berhasil');
+        redirect()->route('dashboard')->with('loginSuccess', 'Login Berhasil');
     }
 
     public function updated($propertyName){

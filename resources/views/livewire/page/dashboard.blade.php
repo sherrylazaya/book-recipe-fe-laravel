@@ -36,7 +36,7 @@
             <div class="mx-md-2">
                 <div class="d-md-flex align-items-center justify-content-between mt-4 mx-auto">
                     <livewire:reusable.index-limitter>
-                    <livewire:reusable.pagination :initialData="$recipes" :currentPage="$currentPage" :key="$indexChanges">
+                    <livewire:reusable.pagination :initialData="$recipes" :currentPage="$currentPage" :key="$currentPage">
                 </div>
             </div>
         </div>

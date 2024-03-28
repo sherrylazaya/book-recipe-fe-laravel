@@ -15,15 +15,42 @@
     font-size: 14px;
 }
 
-.btn-add {
-    background: #01BFBF;
-    width: 12rem;
-    font-size: 14px;
+.text-recipe-primary{
+    color: #01bfbf;
 }
 
-@media (max-width: 576px) {
+.w-max-md{
+    max-width: 50%;
+}
+
+
+@media(max-width: 576px){
+    .custom-fontsize-subtitle{
+        font-size: 22px;
+    }
+    .custom-fontsize-content1{
+        font-size: 14px;
+    }
+    .custom-fontsize-content2{
+        font-size: 12px;
+    }
+    .custom-fontsize-content3{
+        font-size: 16px;
+    }
+    .w-max-xs{
+        max-width: 88%;
+    }
+    .container-fluid{
+        margin: 0 -1% 0 -1%;
+        cursor: pointer;
+    }
     .btn-add {
         width: 10rem;
         margin: 0;
     }
+}
+.btn-add {
+    background: #01BFBF;
+    width: 12rem;
+    font-size: 14px;
 }

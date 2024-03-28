@@ -51,6 +51,7 @@ class APIHelper{
             $response = Http::put($endpoint ,[
                 'userId' => session()->get('userId')
             ]);
+            Log::info($response);
             return $response->json();
         } catch (\Throwable $error){
             Log::error($error->getMessage());
@@ -61,9 +62,8 @@ class APIHelper{
     public function register($data){
         try{
             if(!is_array($data)){
-                throw new InvalidArgumentException('$data mus be an array');
+                throw new InvalidArgumentException('$data must be an array');
             }
-
             $endpoint = $this->url['register'];
             $response =  Http::post($endpoint ,$data);
             return $response->json();
@@ -88,12 +88,25 @@ class APIHelper{
             ]);
             $response = Http::get($endp);
             return $response->json();
-        } catch (\Throwable $error) {
+        } catch (Throwable $error) {
             Log::error($error->getMessage());
             throw $error;
         }
     }
 
+    function getDetailRecipe($id){
+        try {
+            $endpoint = str_replace('{id}', $id, $this->url['detail-recipe']);
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . session('token')
+            ])->get($endpoint);
+            return $response->json();
+        } catch (Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
+    
     public function getLevels(){
         try {
             $endpoint = $this->url['levels'];

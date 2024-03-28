@@ -46,7 +46,6 @@ class APIHelper{
             if(!is_array($data)){
                 throw new InvalidArgumentException('$data mus be an array');
             }
-
             $endpoint = $this->url['register'];
             $response =  Http::post($endpoint ,$data);
             return $response->json();
@@ -55,5 +54,7 @@ class APIHelper{
             throw $error;
         }
     }
+
+   
 }
 ?>

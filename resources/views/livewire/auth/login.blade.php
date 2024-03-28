@@ -1,11 +1,11 @@
 <div>
+    @if (session('registerSuccess'))
+      <livewire:reusable.alert-auth-success :message="session('registerSuccess')"/>
+    @endif
     @error('loginError')
     <livewire:reusable.alert-error/>
     @enderror
-    @if (session('registerSuccess'))
-        <livewire:reusable.alert-auth-success :message="session('registerSuccess')" />
-    @endif
-<livewire:reusable.alert-auth-error/>
+    <livewire:reusable.alert-auth-error/>
     <x-frame :judul="'Login'">
     <form wire:submit.prevent="login" class="row g-1 needs-validation mx-auto p-4">
         @csrf

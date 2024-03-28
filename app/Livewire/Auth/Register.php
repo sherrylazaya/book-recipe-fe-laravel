@@ -43,10 +43,11 @@ class Register extends Component
 
             'password.required' => 'Kolom kata sandi tidak boleh kosong.',
             'password.min' => 'Kolom kata sandi minimal 6 karakter.',
-            'password.max' => 'Kolom kata sadi maksimal 50 karakter.',
+            'password.max' => 'Kolom kata sandi maksimal 50 karakter.',
 
             'retypePassword.required' => 'Kolom konfirmasi kata sandi tidak boleh kosong.',
             'retypePassword.same' => 'Kolom konfirmasi kata sandi harus sama dengan kata sandi.',
+
         ];
     }
 
@@ -64,7 +65,7 @@ class Register extends Component
             'fullname' => $this->fullName,
             'password' => $this->password,
             'retypePassword' => $this->retypePassword,
-            'created-by' => $this->username,
+                'created_by' => $this->username,
             'role' => 'User',
             'is_deleted' => false,
             'modified_time' => now()
@@ -95,4 +96,5 @@ class Register extends Component
     public function toggleRetypePasswordVisibility(){
         $this->showRetypePassword = !$this->showRetypePassword;
     }
+
 }

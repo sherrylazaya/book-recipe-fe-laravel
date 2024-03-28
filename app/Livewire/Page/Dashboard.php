@@ -19,7 +19,7 @@ class Dashboard extends Component
     public $recipeId;
     public $indexChanges = 1;
 
-    
+
     public function mount()
     {
         $this->recipes = $this->fetchRecipes();

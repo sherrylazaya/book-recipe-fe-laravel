@@ -1,0 +1,102 @@
+.btn-recipe-primary{
+    width: 145px;
+    background-color: #01BFBF;
+    color: #F4F4F4;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #01A7A7;
+}
+
+.btn-recipe-outline-primary{
+    width: 145px;
+    border: 1px solid #01BFBF;
+    color: #01BFBF;
+    --bs-btn-hover-color: #01A7A7;
+    --bs-btn-hover-border-color: #01A7A7;
+    --bs-btn-hover-bg: #F4F4F4;
+}
+
+.form-recipe{
+    font-size: 14px;
+    margin: auto;
+    width: 100%;
+}
+
+.form-recipe .form-control{
+    height: 4rem;
+}
+
+.form-recipe .form-select{
+    height: 4rem;
+}
+
+.image-upload{
+    position: relative;
+    /* min-height: 250px;
+    max-width: 250px; */
+    border: 1px dashed #b8b7b7;
+}
+
+.image-upload-danger{
+    border: 1px dashed red !important;
+}
+
+.img-preview{
+    max-height: 200px;
+}
+
+.image-input{
+    opacity: 0.0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-upload-loading{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-upload-placeholder{
+    width: 15%;
+    height: 15%;
+}
+
+#ingridient .ql-editor{
+    height: 300px;
+}
+
+#howToCook .ql-editor{
+    height: 472px;
+}
+
+.rich-text-danger{
+    border: 1px solid #fd8995;
+    border-radius: 5px;
+}
+
+.ql-editor{
+    background: white;
+    border: 0px solid thistle;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.ql-container{
+    border: 0px solid thistle;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.ql-toolbar{
+    background: white;
+    border-radius: 5px 5px 0px 0px;
+}
+
+

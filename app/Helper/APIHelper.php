@@ -14,7 +14,7 @@ class APIHelper{
     public function __construct(){
         $this->baseUrl = env('API_URL');
         $this->url = [
-            'login' => $this->baseUrl.'/user-management/users/sign-in',
+            'login' => $this->baseUrl.'/user-management/users/signin',
             'register' => $this->baseUrl.'/user-management/users/sign-up',
             'levels' => $this->baseUrl.'/book-recipe-masters/level-option-lists',
             'categories' => $this->baseUrl.'/book-recipe-masters/category-option-lists',

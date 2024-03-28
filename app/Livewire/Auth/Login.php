@@ -18,10 +18,13 @@ class Login extends Component
     #[Validate]
     public $password;
     public $showPassword = false;
+    public $loginError;
+
+    #[Layout('components.layouts.auth')]
 
     public function render()
     {
-        return view('livewire.auth.login')->layout('components.layouts.auth');
+        return view('livewire.auth.login'); 
     }
 
     public function rules(){
@@ -40,6 +43,30 @@ class Login extends Component
             'password.max' => 'Kata sandi tidak boleh lebih dari 50 karakter',
             'password.min' => 'Kata sandi tidak boleh kurang dari 6 karakter',
         ];
+    }
+
+    public function login(){
+        $this->validate();
+        $helper = new APIHelper();
+        $data = [
+            'username' => $this->username,
+            'password' => $this->password,
+        ];
+
+        $response = $helper->login($data);
+
+        if($response['statusCode'] == 401){
+            $this->dispatch('alertAuthError', message:"Username atau kata sandi salah");
+            return;
+        } else if($response['statusCode'] == 500){
+            $this->addError('loginError', 'Server Error');
+            return;
+        }
+
+        session()->put('token', $response['data']['token']);
+        session()->put('userId', $response['data']['id']);
+
+        redirect()->route('dasboard')->with('loginSuccess', 'Login Berhasil');
     }
 
     public function updated($propertyName){

@@ -4,6 +4,7 @@ use App\Livewire\Auth\Login;
 use App\Livewire\Page\MyRecipe;
 use App\Livewire\Page\Dashboard;
 use App\Livewire\Page\Favorites;
+use App\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,5 @@ Route::get('/my-recipes', MyRecipe::class)->name('my-recipes');
 Route::get('/favorites', Favorites::class)->name('favorites');
 Route::get('/edit-recipes/{id}', Favorites::class)->name('edit-recipe');
 Route::get('/detail/{id}', Favorites::class)->name('detail-recipe');
+Route::get('/register', Register::class)->name('register');
+

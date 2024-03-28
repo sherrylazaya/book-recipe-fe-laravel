@@ -7,24 +7,24 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
 class APIHelper{
-    private $baseurl;
+    private $baseUrl;
     private $url;
 
     public function __construct(){
-        $this->baseurl = env('API_URL');
+        $this->baseUrl = env('API_URL');
         $this->url = [
-            'login' => $this->baseurl.'/user-management/users/sign-in',
-            'register' => $this->baseurl.'/user-management/users/sign-up',
-            'levels' => $this->baseurl.'/book-recipe-masters/level-option-lists',
-            'categories' => $this->baseurl.'/book-recipe-masters/category-option-lists',
-            'my-recipes' => $this->baseurl.'/book-recipe/my-recipes',
-            'fav-recipes' => $this->baseurl.'/book-recipe/my-favorite-recipes',
-            'recipes' => $this->baseurl.'/book-recipe/book-recipes',
-            'detail-recipe' => $this->baseurl.'/book-recipe/book-recipes/{id}',
-            'add-recipe' => $this->baseurl.'/book-recipe/book-recipes',
-            'edit-recipe' => $this->baseurl.'/book-recipe/book-recipes/edit',
-            'delete-recipe' => $this->baseurl.'/book-recipe/book-recipes/{id}',
-            'tog-favorite' => $this->baseurl.'/book-recipe/book-recipes/{id}/favorites',
+            'login' => $this->baseUrl.'/user-management/users/sign-in',
+            'register' => $this->baseUrl.'/user-management/users/sign-up',
+            'levels' => $this->baseUrl.'/book-recipe-masters/level-option-lists',
+            'categories' => $this->baseUrl.'/book-recipe-masters/category-option-lists',
+            'my-recipes' => $this->baseUrl.'/book-recipe/my-recipes',
+            'fav-recipes' => $this->baseUrl.'/book-recipe/my-favorite-recipes',
+            'recipes' => $this->baseUrl.'/book-recipe/book-recipes',
+            'detail-recipe' => $this->baseUrl.'/book-recipe/book-recipes/{id}',
+            'add-recipe' => $this->baseUrl.'/book-recipe/book-recipes',
+            'edit-recipe' => $this->baseUrl.'/book-recipe/book-recipes/edit',
+            'delete-recipe' => $this->baseUrl.'/book-recipe/book-recipes/{id}',
+            'tog-favorite' => $this->baseUrl.'/book-recipe/book-recipes/{id}/favorites',
         ];
     }
 
@@ -49,7 +49,22 @@ class APIHelper{
                 'userId' => session()->get('userId')
             ]);
             return $response->json();
-        } catch (\Throwable $error) {
+        } catch (\Throwable $error){
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
+
+    public function register($data){
+        try{
+            if(!is_array($data)){
+                throw new InvalidArgumentException('$data mus be an array');
+            }
+
+            $endpoint = $this->url['register'];
+            $response =  Http::post($endpoint ,$data);
+            return $response->json();
+        } catch (\Throwable $error){
             Log::error($error->getMessage());
             throw $error;
         }
@@ -67,7 +82,7 @@ class APIHelper{
     //             'sortBy' => $sortBy,
     //             'pageSize' => $pageSize,
     //             'pageNumber' => $pageNumber
-    //         ]); 
+    //         ]);
     //         $response = Http::get($endp);
     //         return $response->json();
     //     } catch (\Throwable $error) {
@@ -101,7 +116,7 @@ class APIHelper{
                 "statusCode" => 200,
                 "status" => "OK"
             ];
-    
+
             // Generate fake recipe data
             for ($i = 0; $i < $pageSize; $i++) {
                 $recipe = [
@@ -122,7 +137,7 @@ class APIHelper{
                 ];
                 $fakeApiResponse['data'][] = $recipe;
             }
-    
+
             return $fakeApiResponse;
         } catch (\Throwable $error) {
             return ["error" => $error->getMessage()];

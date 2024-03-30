@@ -23,34 +23,44 @@ class Favorites extends Component
 
     public function mount()
     {
-        $this->recipes = $this->fetchRecipes();
+            $this->recipes = $this->fetchRecipes();
     }
 
     public function fetchRecipes()
     {
-        $api = new APIHelper();
-        $userId = session()->get('userId');
-        $pageSize = session()->get('entries', 8);
-        $response = $api->getFavoriteRecipes($userId, $this->time, $this->search, $this->level, $this->category, $this->sortBy, $pageSize, $this->currentPage);
-        $response['isNoData'] = false;
-        if($response['total'] == 0){
-            $response['isNoData'] = true;
-        }
-        return $response;
+            $api = new APIHelper();
+            $userId = session()->get('userId');
+            $pageSize = session()->get('entries', 8);
+            $response = $api->getFavoriteRecipes($userId, $this->time, $this->search, $this->level, $this->category, $this->sortBy, $pageSize, $this->currentPage
+            );
+
+            $response['isNoData'] = false;
+            if($response['total'] == 0){
+                $response['isNoData'] = true;
+            }
+
+            return $response;     
     }
 
     #[On('showModal')]
     public function showModal($message, $id){
         $this->recipeId = $id;
-
+        
         $this->dispatch(
             'infoAlert-favorite-'.$this->alertId,
             message: $message);
+    }
 
+    #[On('searchPerformed')]
+    public function search($search){
+        $this->search = $search;
+        $this->recipes = $this->fetchRecipes();
+        $this->indexChanges++;
     }
 
     #[On('filterPerformed')]
     public function filter($time=null, $level=null, $category=null, $sortBy=null){
+
         $this->time = $time;
         $this->level = $level;
         $this->category = $category;
@@ -61,19 +71,16 @@ class Favorites extends Component
 
     #[On('updateEntries')]
     public function entries(){
-        Log::info('halo');
         $this->recipes = $this->fetchRecipes();
         $this->indexChanges++;
     }
 
     #[On('paginationMyFavorite')]
     public function paginationChanged($currentPage){
-        Log::info('changed'.$currentPage);
         $this->currentPage = $currentPage;
         $this->recipes = $this->fetchRecipes();
-        $this->indexChanges++;
     }
-    
+
     #[On('choices-favorite')]
     public function favorites($choices){
         Log::info($choices);
@@ -81,7 +88,7 @@ class Favorites extends Component
         if($choices){
             $this->dispatch('updateFavorite', id: $this->recipeId);
             $this->alertId++;
-            }
+        }
     }
 
     #[On('favorite-updated')]

@@ -31,15 +31,7 @@ class Favorites extends Component
             $api = new APIHelper();
             $userId = session()->get('userId');
             $pageSize = session()->get('entries', 8);
-            $response = $api->getFavoriteRecipes(
-                $userId, 
-                $this->time, 
-                $this->search, 
-                $this->level, 
-                $this->category, 
-                $this->sortBy, 
-                $pageSize, 
-                $this->currentPage
+            $response = $api->getFavoriteRecipes($userId, $this->time, $this->search, $this->level, $this->category, $this->sortBy, $pageSize, $this->currentPage
             );
 
             $response['isNoData'] = false;
@@ -67,12 +59,7 @@ class Favorites extends Component
     }
 
     #[On('filterPerformed')]
-    public function filter(
-        $time=null, 
-        $level=null, 
-        $category=null, 
-        $sortBy=null
-        ) {
+    public function filter($time=null, $level=null, $category=null, $sortBy=null){
 
         $this->time = $time;
         $this->level = $level;

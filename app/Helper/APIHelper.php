@@ -95,6 +95,27 @@ class APIHelper{
         }
     }
 
+    public function getFavoriteRecipes($userId, $time=null, $recipeName=null, $levelId=null, $categoryId=null, $sortBy=null, $pageSize=8, $pageNumber=1){
+        try{
+            $endpoint = $this->url['fav-recipes'];
+            $endp = $endpoint.'?'.http_build_query([
+                'userId' => $userId,
+                'recipeName' => $recipeName,
+                'time' => $time,
+                'levelId' => $levelId,
+                'categoryId' => $categoryId,
+                'sortBy' => $sortBy,
+                'pageSize' => $pageSize,
+                'pageNumber' => $pageNumber
+            ]);
+            $response = Http::get($endp);
+
+            return $response->json();
+        } catch(Throwable $error) {
+            throw $error;
+        }
+    }
+
     function getDetailRecipe($id){
         try {
             $endpoint = str_replace('{id}', $id, $this->url['detail-recipe']);
@@ -154,4 +175,4 @@ class APIHelper{
         }
     }
 }
-?>
+

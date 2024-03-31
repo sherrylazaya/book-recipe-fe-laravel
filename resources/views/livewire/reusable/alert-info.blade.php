@@ -10,7 +10,7 @@
                     <p class="text-center message-modal-{{$name}} mx-md5 mx-2 text-break fs-4 custom-fontsize-content2"></p>
                     <div class="py-md-4 py-3 mx-auto d-flex w-max-xs">
                         <button class="mx-md-5 mx-1 rounded btn btn-lg btn-recipe-outline-primary choices" data-choices="false" data-bs-dismiss="modal">Tidak</button>
-                        <button class="mx-md-5 mx-1 rounded btn btn-lg btn-recipe-outline-primary choices" data-choices="true" data-bs-dismiss="modal">Ya</button>
+                        <button class="mx-md-5 mx-1 rounded btn btn-lg btn-recipe-primary choices" data-choices="true" data-bs-dismiss="modal">Ya</button>
                     </div>
                 </div>
             </div>

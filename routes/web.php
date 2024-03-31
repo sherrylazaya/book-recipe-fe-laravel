@@ -1,7 +1,7 @@
 <?php
 
 use App\Livewire\Auth\Login;
-use App\Livewire\Page\MyRecipe;
+use App\Livewire\Page\MyRecipes;
 use App\Livewire\Page\Dashboard;
 use App\Livewire\Page\Favorites;
 use App\Livewire\Auth\Register;
@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/login', Login::class)->name('login');
 Route::get('/dashboard', Dashboard::class)->name('dashboard');
-Route::get('/my-recipes', MyRecipe::class)->name('my-recipes');
+Route::get('/my-recipes', MyRecipes::class)->name('my-recipes');
 Route::get('/favorites', Favorites::class)->name('favorites');
 Route::get('/edit-recipes/{id}', Favorites::class)->name('edit-recipe');
 Route::get('/detail/{id}', DetailRecipe::class)->name('detail-recipe');

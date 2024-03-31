@@ -1,6 +1,13 @@
 <div class="mx-auto p-4">
+    @if ($flashMessage)
+        <livewire:reusable.alert-success :message="$flashMessage" wire:key="success-{{$this->alertId}}">
+    @endif
+
+    @if ($errors->has('serverError'))
+        <livewire:reusable.alert-error />
+    @else
     <form wire:submit="submit" class="form-recipe">
-        <h2 class="text-center fw-bolder mb-5 mt-3">Judul disini</h2>
+        <h2 class="text-center fw-bolder mb-5 mt-3">{{$titleForm}}</h2>
 
         <div class="row mx-auto my-2 justify-content-center">
             {{-- Form Bagian Kiri --}}
@@ -86,11 +93,12 @@
 
                 <div class="d-flex justify-content-end my-3 buttons-container">
                     <button class="btn btn-recipe-outline-primary mb-md-0 me-2" wire:click="cancel">Cancel</button>
-                    <button class="btn btn-recipe-primary">Submit</button>
+                    <button class="btn btn-recipe-primary" type="submit">Submit</button>
                 </div>
 
             </div>
 
         </div>
     </form>
+    @endif
 </div>

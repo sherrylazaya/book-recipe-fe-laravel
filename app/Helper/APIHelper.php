@@ -121,7 +121,7 @@ class APIHelper{
     }
 
     public function getCategories(){
-     try {
+        try {
             $endpoint = $this->url['categories'];
             $response = Http::get($endpoint);
 
@@ -129,6 +129,29 @@ class APIHelper{
         } catch (Throwable $error) {
             Log::error($error->getMessage());
             throw $error;
-    }}
+        }
+    }
+
+    public function addRecipe($data, $file){
+        try {
+            $endpoint = $this->url['add-recipe'];
+
+            $jsonFilePath = tempnam(sys_get_temp_dir(), 'recipe_');
+            file_put_contents($jsonFilePath, $data);
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . session('token')
+            ])->attach('file', file_get_contents($file), 'file.jpg')
+            ->attach('request', file_get_contents($jsonFilePath), 'request.json')
+            ->post($endpoint);
+
+            unlink($jsonFilePath);
+
+            return $response->json();
+
+        } catch (Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
 }
 ?>

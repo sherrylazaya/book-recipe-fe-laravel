@@ -1,5 +1,4 @@
 <div>
-    {{-- query filter and search --}}
     @if ($flashMessage)
     <livewire:reusable.alert-success :message="$flashMessage" wire:key="success-{{$alertId}}"/>
     @endif
@@ -14,6 +13,7 @@
     @if($recipes['statusCode'] == 500)
         <livewire:reusable.alert-error>
     @endif
+
     {{-- deskstop --}}
     <div class="d-none d-sm-flex flex-column align-items-center mt-5">
         <div class="d-flex justify-content-center col-12">
@@ -25,6 +25,7 @@
         </div>
         <h1 class="fw-bold custom-fontsize-subtitle mt-3">Resep Saya</h1>
     </div>
+
     {{-- mobile --}}
     <div class="d-flex flex-column justify-content-center mt-3 mx-2 d-sm-none">
         <h1 class="fw-bold custom-fontsize-subtitle text-center">Resep Saya</h1>
@@ -39,16 +40,13 @@
         </div>
     </div>
 
-    {{-- {{ dd($recipes) }} --}}
-    
+    {{-- data --}}
     @if (!$recipes['isNoData'])
     <div class="d-flex justify-content-center w-100">
         <div class="row parent-card justify-content-start mt-3 mx-5">
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                @foreach ($recipes['data'] as $data)
-                    <livewire:reusable.card :data="$data" :key="$data['recipeId']" :showIcon="false">
-                @endforeach
-            </div>
+            @foreach ($recipes['data'] as $data)
+                <livewire:reusable.card :data="$data" :key="$data['recipeId']" :showIcon="false">
+            @endforeach
 
             <div class="mx-md-2">
                 <div class="d-md-flex align-items-center justify-content-between mt-4 mx-auto">

@@ -49,6 +49,7 @@ class MyRecipes extends Component
             'infoAlert-favorite-'.$this->alertId,
             message: $message);
     }
+
     
     #[On('searchPerformed')]
     public function search($search){
@@ -57,7 +58,7 @@ class MyRecipes extends Component
         $this->recipes = $this->fetchRecipes();
         $this->indexChanges++;
     }
-
+    
     #[On('filterPerformed')]
     public function filter($time=null, $level=null, $category=null, $sortBy=null){
         $this->time = $time;
@@ -67,13 +68,13 @@ class MyRecipes extends Component
         $this->recipes = $this->fetchRecipes();
         $this->indexChanges++;
     }
-
+    
     #[On('updateEntries')]
     public function entries(){
         $this->recipes = $this->fetchRecipes();
         $this->indexChanges++;
     }
-    
+
     #[On('paginationChanged')]
     public function paginationChanged($currentPage){
         $this->currentPage = $currentPage;
@@ -82,7 +83,6 @@ class MyRecipes extends Component
     
     #[On('choices-favorite')]
     public function favorites($choices){
-        Log::info($choices);
         $this->flashMessage= null;
         if($choices){
             $this->dispatch('updateFavorite', id: $this->recipeId);
@@ -90,45 +90,29 @@ class MyRecipes extends Component
         }
     }
     
-    // beda 
-    // buat fungsi untuk memunculkan alert
     #[On('showModalDelete')]
     public function showModalDelete($message, $id){
         Log::info('here delete');
-        // Menyimpan ID resep yang akan dihapus
         $this->recipeId = $id;
 
-        // Memicu infoAlert untuk menampilkan pesan konfirmasi penghapusan
         $this->dispatch(
             'infoAlert-delete-'.$this->alertId,
             message: $message);
     }
-
-    // beda 
-    // fungsi buat periksa apakah user memilih ya untuk menghapus resep
+    
     #[On('choices-delete')]
     public function delete($choices){
-        Log::info($choices);
         $this->flashMessage= null;
-
-        // Memeriksa apakah pengguna telah mengonfirmasi penghapusan
         if($choices){
-            // Jika iya, memicu deleteRecipe untuk menghapus resep dengan ID yang tersimpan
             $this->dispatch('deleteRecipe', id: $this->recipeId);
-            // Menambahkan ID untuk alert berikutnya agar unik
             $this->alertId++;
         }
     }
 
-    // beda
-    // terakhir fungsi ketika udah dihapus
     #[On('deleted')]
     public function deleted($message){
-        // Menyimpan pesan hasil penghapusan untuk ditampilkan kepada pengguna
         $this->flashMessage = $message;
-        // Memperbarui daftar resep dengan yang terbaru
         $this->recipes = $this->fetchRecipes();
-        // Menandakan perubahan indeks untuk memperbarui tampilan
         $this->indexChanges++;
     }
 

@@ -4,10 +4,12 @@ namespace App\Livewire\Reusable;
 
 use Livewire\Component;
 use App\Helper\APIHelper;
+use Livewire\Attributes\On;
+use Illuminate\Support\Facades\Log;
 
 class Card extends Component
 {
-
+    
     public $data;
     public $showIcon = true;
 
@@ -34,6 +36,7 @@ class Card extends Component
     }
 
     public function showModal(){
+        Log::info('showModalDispatch');
         $message = $this->data['isFavorite']
         ? 'Apa anda yakin ingin menghapus Resep ini dari Favorit anda?'
         : 'Apa anda ingin menambahkan Resep ini ke Favorite anda?';
@@ -45,6 +48,7 @@ class Card extends Component
         $message = 'Apakah Anda yakin akan menghapus resep '. $this->data['recipeName'];  
         $this->dispatch('showModalDelete', message: $message, id:$this->data['recipeId']);
     }
+
 
     #[On('deleteRecipe')]
     public function delete($id){
@@ -67,7 +71,7 @@ class Card extends Component
     public function doRefresh(){
         $this->dispatch('$refresh');
     }
-
+                                
     public function render()
     {
         return view('livewire.reusable.card');

@@ -10,7 +10,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     display: inline-block;
     margin: 10px;
-}
+} 
 
 .content-recipe {
     position: relative;
@@ -41,7 +41,7 @@
 }
 
 .image-container img {
-    min-width: 100%;
+    min-width: 100%; 
     min-height: 100%;
     object-fit: cover;
     z-index: 1;
@@ -59,10 +59,10 @@
     }
 }
 
-@media (min-width: 576px){
+@media (min-width: 576px) {
     .card {
         width: 100%;
-        max-width: none;
+        max-width: none; 
     }
-}
 
+}

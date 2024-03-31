@@ -95,6 +95,27 @@ class APIHelper{
         }
     }
 
+    public function getFavoriteRecipes($userId, $time=null, $recipeName=null, $levelId=null, $categoryId=null, $sortBy=null, $pageSize=8, $pageNumber=1){
+        try{
+            $endpoint = $this->url['fav-recipes'];
+            $endp = $endpoint.'?'.http_build_query([
+                'userId' => $userId,
+                'recipeName' => $recipeName,
+                'time' => $time,
+                'levelId' => $levelId,
+                'categoryId' => $categoryId,
+                'sortBy' => $sortBy,
+                'pageSize' => $pageSize,
+                'pageNumber' => $pageNumber
+            ]);
+            $response = Http::get($endp);
+
+            return $response->json();
+        } catch(Throwable $error) {
+            throw $error;
+        }
+    }
+
     function getDetailRecipe($id){
         try {
             $endpoint = str_replace('{id}', $id, $this->url['detail-recipe']);
@@ -107,7 +128,7 @@ class APIHelper{
             throw $error;
         }
     }
-    
+
     public function getLevels(){
         try {
             $endpoint = $this->url['levels'];
@@ -119,6 +140,7 @@ class APIHelper{
             throw $error;
         }
     }
+
     public function getCategories(){
      try {
             $endpoint = $this->url['categories'];
@@ -128,60 +150,45 @@ class APIHelper{
         } catch (Throwable $error) {
             Log::error($error->getMessage());
             throw $error;
-        }}
+    }}
 
-        public function getMyRecipes($userId, $time=null, $recipeName=null, $levelId=null, $categoryId=null, $sortBy=null, $pageSize=8, $pageNumber=1){
-            try {
-                // define data" yang mau ada nantinya
-                $endpoint = $this->url['my-recipes'];
-                $endp = $endpoint.'?'.http_build_query([
-                    'userId' => $userId,
-                    'recipeName' => $recipeName,
-                    'time' => $time,
-                    'levelId' => $levelId,
-                    'categoryId' => $categoryId,
-                    'sortBy' => $sortBy,
-                    'pageSize' => $pageSize,
-                    'pageNumber' => $pageNumber
-                ]);
-    
-                // Mengirim permintaan HTTP GET ke URL yang dibangun
-                $response = Http::get($endp);
-    
-                // Mencatat URL akhir dan respons yang diterima
-                Log::info($endp);
-                Log::info($response);
-    
-                // Mengembalikan data dalam bentuk JSON
-                return $response->json();
-            } catch (\Throwable $error) {
-                // Menangani kesalahan yang terjadi, mencatat pesan kesalahan, dan melemparkannya kembali
-                Log::error($error->getMessage());
-                throw $error;
-            }
+    public function getMyRecipes($userId, $time=null, $recipeName=null, $levelId=null, $categoryId=null, $sortBy=null, $pageSize=8, $pageNumber=1){
+        try {
+            $endpoint = $this->url['my-recipes'];
+            $endp = $endpoint.'?'.http_build_query([
+                'userId' => $userId,
+                'recipeName' => $recipeName,
+                'time' => $time,
+                'levelId' => $levelId,
+                'categoryId' => $categoryId,
+                'sortBy' => $sortBy,
+                'pageSize' => $pageSize,
+                'pageNumber' => $pageNumber
+            ]);
+            $response = Http::get($endp);
+            Log::info($endp);
+            Log::info($response);
+            return $response->json();
+        } catch (\Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
         }
-    
-        public function deleteRecipe($id, $userId){
-            try {
-                // Mengganti placeholder '{id}' di URL dengan nilai $id yang diberikan
-                $endpoint = str_replace('{id}', $id, $this->url['delete-recipe']);
-    
-                // Membangun URL akhir dengan parameter userId (buat yang baru)
-                $endp =  $endpoint.'?'.http_build_query([
-                    'userId' => $userId
-                ]);
-    
-                // Mengirim permintaan HTTP PUT untuk menghapus resep
-                $response = Http::put($endp);
-    
-                // Mengembalikan respons dalam bentuk JSON
-                return $response->json();
-    
-            } catch (\Throwable $error) {
-                // Menangani kesalahan yang terjadi, mencatat pesan kesalahan, dan melemparkannya kembali
-                Log::error($error->getMessage());
-                throw $error;
-            }
+    }
+
+    public function deleteRecipe($id, $userId){
+        try {
+            $endpoint = str_replace('{id}', $id, $this->url['delete-recipe']);
+            $endp =  $endpoint.'?'.http_build_query([
+                'userId' => $userId
+            ]);
+            $response = Http::put($endp);
+
+            return $response->json();
+        } catch (\Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
         }
+    }
+
 }
-?>
+

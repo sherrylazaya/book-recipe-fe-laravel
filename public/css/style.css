@@ -58,7 +58,6 @@
     }
     .container-fluid{
         margin: 0 -1% 0 -1%;
-        cursor: pointer;
     }
     .btn-add {
         width: 10rem;

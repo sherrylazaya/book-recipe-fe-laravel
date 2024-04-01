@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 class Navigation extends Component
 {
-    public $isCurrent = 'dashboard';
+    public $isCurrent;
 
     public function logout(){
         session()->forget('token');
@@ -19,14 +19,14 @@ class Navigation extends Component
     public function mount(){
         $route = Route::currentRouteName();
         $previousRoute = session()->get('navPage') ?? 'dashboard';
-        if(in_array($route, ['dashbaord', 'my-recipes', 'favorites'])){
-            $this->isCurrent = $previousRoute;
+        if(in_array($route, ['dashboard', 'my-recipes', 'favorites'])){
+            $this->isCurrent = $route;
             session()->put('navPage', $route);
         }else{
             $this->isCurrent = $previousRoute;
         }
     }
-    
+
     public function render()
     {
         return view('livewire.components.navigation');

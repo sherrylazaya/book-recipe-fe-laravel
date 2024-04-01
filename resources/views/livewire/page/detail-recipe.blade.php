@@ -11,7 +11,7 @@
     @else
 <div class="container-fluid text-start d-flex flex-column justify-content-center w-100 w-max-md w-max-xs mx-auto">
     <h2 class="mt-4 text-center fw-bolder">
-        <a role="button" href="" class="fa-solid fa-chevron-left" style="color: black; text-decoration: none;"></a>
+        <a role="button" href="{{route(session('navPage'))}}" class="fa-solid fa-chevron-left" style="color: black; text-decoration: none;"></a>
         {{$data['data']['recipeName']}}
     </h2>
     <img src="{{$data['data']['imageFilename']}}" alt="Disini Image Resep Desktop" class="mt-4 w-75 mx-auto rounded d-none d-md-block hidden-element">

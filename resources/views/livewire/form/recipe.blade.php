@@ -1,6 +1,13 @@
 <div class="mx-auto p-4">
+    @if ($flashMessage)
+        <livewire:reusable.alert-success :message="$flashMessage" wire:key="success-{{$this->alertId}}">
+    @endif
+
+    @if ($errors->has('serverError'))
+        <livewire:reusable.alert-error />
+    @else
     <form wire:submit="submit" class="form-recipe">
-        <h2 class="text-center fw-bolder mb-5 mt-3">Buat Resep Masakan Baru</h2>
+        <h2 class="text-center fw-bolder mb-5 mt-3">{{$titleForm}}</h2>
 
         <div class="row mx-auto my-2 justify-content-center">
             {{-- Form Bagian Kiri --}}
@@ -15,7 +22,9 @@
                     <label for="image" class="fs-6">Gambar Makanan<strong class="text-danger">*</strong></label>
                     <div id="image-upload-dropzone" class="d-flex w-100 flex-column p-3 mt-2 rounded image-upload
                     {{$errors->first('image' === 'Gambar Makanan tidak boleh kosong') || isset($errors->get('image')[1]) ? 'image-upload-danger' : " "}} bg-light">
-                        @if ($image)
+                        @if (is_string($image))
+                            <img src="{{$image}}" alt="Image Preview" class="img-preview mx-auto my-auto img-fluid">
+                        @elseif($image)
                             <img src="{{$image->temporaryUrl()}}" alt="Image Preview" class="img-preview mx-auto my-auto img-fluid">
                         @else
                             <img src="{{asset('icon/addPhoto.svg')}}" alt="Image Preview" class="mx-auto image-upload-placeholder my-3">
@@ -38,7 +47,7 @@
                 <div class="mt-4 mb-4">
                     <label>Bahan - Bahan<strong class="text-danger">*</strong></label>
                     <div class="@error('ingridient') rich-text-danger @enderror">
-                        <livewire:reusable.rich-text name="ingridient">
+                        <livewire:reusable.rich-text name="ingridient" value="{{$ingridient}}">
                     </div>
                     @error('ingridient') <p class="text-danger m-0 p-0">{{$message}}</p> @enderror
                 </div>
@@ -79,18 +88,19 @@
                 <div class="mt-4">
                     <label>Cara Memasak<strong class="text-danger">*</strong></label>
                     <div class="@error('howToCook') rich-text-danger @enderror">
-                        <livewire:reusable.rich-text name="howToCook">
+                        <livewire:reusable.rich-text name="howToCook" value="{{$howToCook}}">
                     </div>
                     @error('howToCook') <p class="text-danger m-0 p-0">{{$message}}</p> @enderror
                 </div>
 
                 <div class="d-flex justify-content-end my-3 buttons-container">
                     <button class="btn btn-recipe-outline-primary mb-md-0 me-2" wire:click="cancel">Cancel</button>
-                    <button class="btn btn-recipe-primary">Submit</button>
+                    <button class="btn btn-recipe-primary" type="submit">Submit</button>
                 </div>
 
             </div>
 
         </div>
     </form>
+    @endif
 </div>

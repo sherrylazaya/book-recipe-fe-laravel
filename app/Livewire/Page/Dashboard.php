@@ -44,6 +44,7 @@ class Dashboard extends Component
     public function showModal($message, $id){
         $this->recipeId = $id;
 
+        Log::info('Dispatched');
         $this->dispatch(
             'infoAlert-favorite-'.$this->alertId,
             message: $message);
@@ -91,7 +92,8 @@ class Dashboard extends Component
         if($choices){
             $this->dispatch('updateFavorite', id: $this->recipeId);
             $this->alertId++;
-            }
+        }
+
     }
 
     #[On('favorite-updated')]

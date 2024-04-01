@@ -5,7 +5,11 @@
 
     <livewire:reusable.alert-info name="favorite" :alertId="$alertId" wire:key="alert_{{$alertId}}" />
 
-    {{-- desktop --}}
+    @if($recipes['statusCode'] == 500)
+        <livewire:reusable.alert-error/>
+    @endif
+
+    {{-- dekstop --}}
     <div class="d-none d-sm-flex flex-column align-items-center mt-5">
         <div class="d-flex justify-content-center col-12">
             <a href="{{ route('add-recipe') }}" class="btn-add btn btn-primary mx-3" role="button">
@@ -31,12 +35,11 @@
         </div>
     </div>
 
-    {{-- data --}}
     @if (!$recipes['isNoData'])
     <div class="d-flex justify-content-center w-100">
         <div class="row parent-card justify-content-start mt-3 mx-5">
             @foreach ($recipes['data'] as $data)
-                    <livewire:reusable.card :data="$data" :key="$data['recipeId']">
+                    <livewire:reusable.card :data="$data" :key="$data['recipeId']"> 
                 @endforeach
 
                 <div class="mx-md-2">
@@ -51,4 +54,5 @@
     @else
     <livewire:components.no-data :message="$recipes['message']">
         @endif
+
 </div>

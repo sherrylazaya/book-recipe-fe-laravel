@@ -174,5 +174,32 @@ class APIHelper{
             throw $error;
         }
     }
+
+    public function editRecipe($data, $file){
+        try {
+            $endpoint = $this->url['edit-recipe'];
+
+            $jsonFilePath = tempnam(sys_get_temp_dir(), 'recipe_');
+            file_put_contents($jsonFilePath, $data);
+
+            $request = Http::withHeaders([
+                'Authorization' => 'Bearer ' . session('token')
+            ])->attach('request', file_get_contents($jsonFilePath), 'request.json');
+
+            if($file){
+                $request->attach('file', file_get_contents($file), 'file.jpg');
+            }
+
+            $response = $request->post($endpoint);
+
+            unlink($jsonFilePath);
+
+            return $response->json();
+
+        } catch (Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
 }
 

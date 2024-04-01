@@ -7,6 +7,7 @@ use App\Livewire\Page\Favorites;
 use App\Livewire\Auth\Register;
 use App\Livewire\Page\AddRecipe;
 use App\Livewire\Page\DetailRecipe;
+use App\Livewire\Page\EditRecipe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +33,5 @@ Route::get('/edit-recipes/{id}', Favorites::class)->name('edit-recipe');
 Route::get('/detail/{id}', DetailRecipe::class)->name('detail-recipe');
 Route::get('/register', Register::class)->name('register');
 Route::get('/add-recipe', AddRecipe::class)->name('add-recipe');
+Route::get('/edit-recipe/{id}', EditRecipe::class)->name('edit-recipe');
 

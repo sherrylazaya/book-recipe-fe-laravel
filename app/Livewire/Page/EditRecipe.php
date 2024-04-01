@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 
-class AddRecipe extends Component
+class EditRecipe extends Component
 {
+
     use WithFileUploads;
 
     #[Validate]
@@ -31,6 +32,8 @@ class AddRecipe extends Component
     #[Validate]
     public $image;
 
+    public $recipeId;
+
     public $categories;
     public $levels;
 
@@ -43,7 +46,7 @@ class AddRecipe extends Component
     public $flashMessage;
     public $alertId;
 
-    public $titleForm = 'Buat Resep Masakan Baru';
+    public $titleForm = 'Edit Resep Masakan';
 
     public function rules(){
         return [
@@ -71,17 +74,29 @@ class AddRecipe extends Component
             'selectedCategory.required' => 'Kategori Memasak tidak boleh kosong',
             'selectedLevel.required' => 'Tingkat Kesulitan tidak boleh kosong',
 
-            'image.required' => 'Gambar Masakan tidak boleh kosong',
             'ingridient.required' => 'Bahan - Bahan tidak boleh kosong',
             'howToCook.required' => 'Cara Memasak tidak boleh kosong'
         ];
     }
 
-    public function mount(){
+    public function mount($id){
+        $this->fecthData($id);
+    }
+
+    public function fecthData($id){
         try {
             $api = new APIHelper();
             $this->categories = $api->getCategories()['data'];
             $this->levels = $api->getLevels()['data'];
+            $data = $api->getDetailRecipe($id)['data'];
+            $this->recipeName = $data['recipeName'];
+            $this->recipeId = $data['recipeId'];
+            $this->timeCook = $data['timeCook'];
+            $this->selectedCategory = $data['categories']['categoryId'];
+            $this->selectedLevel = $data['levels']['levelId'];
+            $this->ingridient = $data['ingridient'];
+            $this->howToCook = $data['howToCook'];
+            $this->image = $data['imageFilename'];
         } catch (\Throwable $error) {
             Log::error($error->getMessage());
             $this->addError('serverError', 'Terjadi Kesalahan Server');
@@ -141,10 +156,20 @@ class AddRecipe extends Component
     public function submit(){
         try {
             $this->validate();
+            if(!is_string($this->image)){
+                $this->validate([
+                    'image' => 'required|max:1024|mimes:jpeg,jpg,png,tmp',
+                ],[
+                    'image.required' => 'Gambar Masakan tidak boleh kosong',
+                    'image.max' => 'Format gambar tidak sesuai / Gambar melebihi batas maksimal (1MB)',
+                    'image.mimes' => 'Format gambar tidak sesuai / Gambar melebihi batas maksimal (1MB)'
+                ]);
+            }
             $this->getIdName();
             $api = new APIHelper();
             $data = [
                 'userId' => session('userId'),
+                'recipeId' => $this->recipeId,
                 'categories' => [
                     'categoryId' => $this->selectedCategory,
                     'categoryName' => $this->categoryName,
@@ -161,7 +186,7 @@ class AddRecipe extends Component
             ];
 
             $jsonData = json_encode($data, JSON_PRETTY_PRINT);
-            $response = $api->addRecipe($jsonData, $this->imageData);
+            $response = $api->editRecipe($jsonData, $this->imageData);
 
             if($response['statusCode'] !== 200){
                 throw new Exception($response['message']);

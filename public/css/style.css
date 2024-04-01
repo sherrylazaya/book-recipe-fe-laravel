@@ -19,6 +19,10 @@
     color: #01bfbf;
 }
 
+.text-recipe-danger{
+    color: #ff0000;
+}
+
 .w-max-md{
     max-width: 50%;
 }

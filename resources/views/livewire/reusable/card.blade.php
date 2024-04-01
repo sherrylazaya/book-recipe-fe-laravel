@@ -1,21 +1,21 @@
 <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-    <div class="col d-flex justift-content-center align-item-center w-100">
+    <div class="col d-flex justify-content-center align-item-center w-100">
         <div class="justify-content-center">
             <div class="card">
                 {{-- elipsis icon --}}
                 <div class="btn-group">
                     <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                         @if($showIcon)
-                            <i class="fa fa-my-recipe-icon" style="color: white;"></i>
+                        <i class="fa fa-my-recipe-icon" style="color: white;"></i>
                         @else
-                            <i class="fa fa-ellipsis" style="color: white;"></i>
+                        <i class="fa fa-ellipsis" style="color: white;"></i>
                         @endif
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item text-recipe-primary" href="{{route("edit-recipe", ['id' => $data['recipeId']])}}">
-                            <i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
-                        <li><a class="dropdown-item text-recipe-danger" wire:click ="showModalDelete">
-                            <i class="fa-solid fa-trash"></i>Hapus</a></li>
+                        <li><a class="dropdown-item text-recipe-primary" href="{{route('edit-recipe', ['id' => $data['recipeId']])}}">
+                                <i class="fa-solid fa-pen-to-square"></i> Edit</a></li>
+                        <li><a class="dropdown-item text-recipe-danger" wire:click='showModalDelete'>
+                                <i class="fa-solid fa-trash"></i> Hapus</a></li>
                     </ul>
                 </div>
 
@@ -33,7 +33,7 @@
                     </div>
 
                     {{-- middle section --}}
-                    <p class="p-recipe fw-bold">{{$data['recipeName']}}</p>
+                    <p class="p-recipe fw-bold text-overflow">{{$data['recipeName']}}</p>
 
                     {{-- bottom section --}}
                     <div class="mt-0">

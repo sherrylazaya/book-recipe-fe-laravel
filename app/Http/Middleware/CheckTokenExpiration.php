@@ -26,8 +26,8 @@ class CheckTokenExpiration
         $parts = explode('.', $token);
         if(count($parts) == 3){
             $payload = json_decode(base64_decode($parts[1], true));
-            if(isset($payload['exp'])){
-                $expiration = $payload['exp'];
+            if(isset($payload->exp)){
+                $expiration = $payload->exp;
                 if(time() > $expiration){
                     Session::flush();
                     return redirect('/login')->with('error', 'Token has expired. Please log in again.');

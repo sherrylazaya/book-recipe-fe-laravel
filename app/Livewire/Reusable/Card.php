@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class Card extends Component
 {
-    
+
     public $data;
     public $showIcon = true;
 
@@ -32,7 +32,7 @@ class Card extends Component
                 $this->addError('togFavorite', $response['message']);
             }
         }
-       
+
     }
 
     public function showModal(){
@@ -45,7 +45,7 @@ class Card extends Component
 
     public function showModalDelete(){
         Log::info('showModalDispatch');
-        $message = 'Apakah Anda yakin akan menghapus resep '. $this->data['recipeName'];  
+        $message = 'Apakah Anda yakin akan menghapus resep '. $this->data['recipeName'];
         $this->dispatch('showModalDelete', message: $message, id:$this->data['recipeId']);
     }
 
@@ -53,7 +53,7 @@ class Card extends Component
     #[On('deleteRecipe')]
     public function delete($id){
         if($this->data['recipeId'] == $id){
-            $api = new APIhelper();   
+            $api = new APIhelper();
             $userId = session()->get('userId');
             $response = $api->deleteRecipe($this->data['recipeId'], $userId);
             if($response['statusCode'] === 200){
@@ -62,16 +62,16 @@ class Card extends Component
             else{
                 $this->addError('togFavorite', $response['message']);
             }
-    
+
         }
-        
+
     }
 
     #[On('searchPerformed')]
     public function doRefresh(){
         $this->dispatch('$refresh');
     }
-                                
+
     public function render()
     {
         return view('livewire.reusable.card');

@@ -50,7 +50,7 @@
                 <div class="mx-md-2">
                     <div class="d-md-flex align-items-center justify-content-between mx-auto mt-4">
                         <livewire:reusable.index-limitter wire:key="index_{{$indexChanges}}">
-                            <livewire:  reusable.pagination-favorite :totalData="$recipes['total']">
+                            <livewire:reusable.pagination-favorite :totalData="$recipes['total']">
                     </div>
                 </div>
         </div>

@@ -201,5 +201,44 @@ class APIHelper{
             throw $error;
         }
     }
+
+    public function getMyRecipes($userId, $time=null, $recipeName=null, $levelId=null, $categoryId=null, $sortBy=null, $pageSize=8, $pageNumber=1){
+        try {
+            $endpoint = $this->url['my-recipes'];
+            $endp = $endpoint.'?'.http_build_query([
+                'userId' => $userId,
+                'recipeName' => $recipeName,
+                'time' => $time,
+                'levelId' => $levelId,
+                'categoryId' => $categoryId,
+                'sortBy' => $sortBy,
+                'pageSize' => $pageSize,
+                'pageNumber' => $pageNumber
+            ]);
+            $response = Http::get($endp);
+            Log::info($endp);
+            Log::info($response);
+            return $response->json();
+        } catch (\Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
+
+    public function deleteRecipe($id, $userId){
+        try {
+            $endpoint = str_replace('{id}', $id, $this->url['delete-recipe']);
+            $endp =  $endpoint.'?'.http_build_query([
+                'userId' => $userId
+            ]);
+            $response = Http::put($endp);
+
+            return $response->json();
+        } catch (\Throwable $error) {
+            Log::error($error->getMessage());
+            throw $error;
+        }
+    }
+
 }
 

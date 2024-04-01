@@ -1,5 +1,4 @@
 <div>
-    {{-- query filter and search --}}
     @if ($flashMessage)
         <livewire:reusable.alert-success :message="$flashMessage" wire:key="success-{{$alertId}}"/>
     @endif

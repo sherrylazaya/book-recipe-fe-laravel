@@ -50,7 +50,7 @@ class MyRecipes extends Component
             message: $message);
     }
 
-    
+
     #[On('searchPerformed')]
     public function search($search){
         $this->search = $search;
@@ -58,7 +58,7 @@ class MyRecipes extends Component
         $this->recipes = $this->fetchRecipes();
         $this->indexChanges++;
     }
-    
+
     #[On('filterPerformed')]
     public function filter($time=null, $level=null, $category=null, $sortBy=null){
         $this->time = $time;
@@ -68,7 +68,7 @@ class MyRecipes extends Component
         $this->recipes = $this->fetchRecipes();
         $this->indexChanges++;
     }
-    
+
     #[On('updateEntries')]
     public function entries(){
         $this->recipes = $this->fetchRecipes();
@@ -80,7 +80,7 @@ class MyRecipes extends Component
         $this->currentPage = $currentPage;
         $this->recipes = $this->fetchRecipes();
     }
-    
+
     #[On('choices-favorite')]
     public function favorites($choices){
         $this->flashMessage= null;
@@ -89,7 +89,7 @@ class MyRecipes extends Component
             $this->alertId++;
         }
     }
-    
+
     #[On('showModalDelete')]
     public function showModalDelete($message, $id){
         Log::info('here delete');
@@ -99,7 +99,7 @@ class MyRecipes extends Component
             'infoAlert-delete-'.$this->alertId,
             message: $message);
     }
-    
+
     #[On('choices-delete')]
     public function delete($choices){
         $this->flashMessage= null;

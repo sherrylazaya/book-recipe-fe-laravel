@@ -44,15 +44,13 @@
     <div class="d-flex justify-content-center w-100">
         <div class="row parent-card justify-content-start mt-3 mx-5">
             @foreach ($recipes['data'] as $data)
-                    <livewire:reusable.card :data="$data" :key="$data['recipeId']"> 
+                    <livewire:reusable.card :data="$data" :key="$data['recipeId']">
                 @endforeach
 
                 <div class="mx-md-2">
                     <div class="d-md-flex align-items-center justify-content-between mx-auto mt-4">
-                        <livewire:reusable.index-limitter :key="$indexChanges"> 
-                            <livewire:reusable.pagination-favorite :totalData="$recipes['total']">
-                        <livewire:reusable.index-limitter :key="$indexChanges"> 
-                            <livewire:reusable.pagination-favorite :totalData="$recipes['total']">
+                        <livewire:reusable.index-limitter wire:key="index_{{$indexChanges}}">
+                            <livewire:reusable.pagination-favorite :totalData="$recipes['total']" wire:key="pagination_{{$indexChanges}}">
                     </div>
                 </div>
         </div>

@@ -31,7 +31,7 @@
                         class="form-control @error('password') is-invalid @enderror" placeholder="Kata Sandi"
                         wire:model.live="password"/>
                         <span class="input-group-text" wire:click="togglePasswordVisibility" style="cursor: pointer;">
-                            <i role="button" type="button" 
+                            <i role="button" type="button"
                                 class="fa-solid {{ $showPassword ? 'fa-eye-slash' : 'fa-eye'}}"></i>
                         </span>
                         @error('password')
@@ -47,10 +47,10 @@
                         class="form-control @error('retypePassword') is-invalid @enderror" placeholder="Konfirmasi Kata Sandi"
                         wire:model.live="retypePassword"/>
                         <span class="input-group-text" wire:click="toggleRetypePasswordVisibility" style="cursor: pointer;">
-                            <i role="button" type="button" 
+                            <i role="button" type="button"
                                 class="fa-solid {{ $showRetypePassword ? 'fa-eye-slash' : 'fa-eye'}}"></i>
                         </span>
-                        @error('password')
+                        @error('retypePassword')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

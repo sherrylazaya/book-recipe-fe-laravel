@@ -28,11 +28,11 @@ Route::get('/', function () {
 Route::get('/login', Login::class)->name('login');
 Route::get('/register', Register::class)->name('register');
 
-Route::middleware(['checkTokenExporation'])->group(function() {
+Route::middleware(['checkTokenExpiration'])->group(function() {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/my-recipes', MyRecipes::class)->name('my-recipes');
     Route::get('/favorites', Favorites::class)->name('favorites');
-    Route::get('/edit-recipes/{id}', Favorites::class)->name('edit-recipe');
+    Route::get('/edit-recipes/{id}', EditRecipe::class)->name('edit-recipe');
     Route::get('/detail/{id}', DetailRecipe::class)->name('detail-recipe');
     Route::get('/add-recipe', AddRecipe::class)->name('add-recipe');
 });

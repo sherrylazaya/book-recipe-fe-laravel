@@ -25,11 +25,15 @@ Route::get('/', function () {
 });
 
 Route::get('/login', Login::class)->name('login');
-Route::get('/dashboard', Dashboard::class)->name('dashboard');
-Route::get('/my-recipes', MyRecipe::class)->name('my-recipes');
-Route::get('/favorites', Favorites::class)->name('favorites');
-Route::get('/edit-recipes/{id}', Favorites::class)->name('edit-recipe');
-Route::get('/detail/{id}', DetailRecipe::class)->name('detail-recipe');
 Route::get('/register', Register::class)->name('register');
-Route::get('/add-recipe', AddRecipe::class)->name('add-recipe');
+
+Route::middleware(['checkTokenExporation'])->group(function() {
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/my-recipes', MyRecipe::class)->name('my-recipes');
+    Route::get('/favorites', Favorites::class)->name('favorites');
+    Route::get('/edit-recipes/{id}', Favorites::class)->name('edit-recipe');
+    Route::get('/detail/{id}', DetailRecipe::class)->name('detail-recipe');
+    Route::get('/add-recipe', AddRecipe::class)->name('add-recipe');
+});
+
 
